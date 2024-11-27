@@ -9,10 +9,13 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String name;
+    @Column(name = "first_name", nullable = false)
+    private String firstName;
 
-    @Column(nullable = false)
+    @Column(name = "last_name", nullable = false)
+    private String lastName;
+
+    @Column(name = "phone_number", nullable = false)
     private String phoneNumber;
 
     @Column
@@ -20,15 +23,19 @@ public class Person {
 
     protected Person() {}
 
-    public Person(String name, String phoneNumber, String email) {
-        if (name == null || name.isBlank()) {
-            throw new IllegalArgumentException(String.format("Name cannot be null or empty"));
+    public Person(String firstName, String lastName, String phoneNumber, String email) {
+        if (firstName == null || firstName.isBlank()) {
+            throw new IllegalArgumentException(String.format("First name cannot be null or empty"));
+        }
+        if (lastName == null || lastName.isBlank()) {
+            throw new IllegalArgumentException(String.format("Last name cannot be null or empty"));
         }
         if (phoneNumber == null || phoneNumber.isBlank()) {
             throw new IllegalArgumentException(String.format("Phone number cannot be null or empty"));
         }
 
-        this.name = name;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.email = email;
     }
@@ -37,8 +44,12 @@ public class Person {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 
     public String getPhoneNumber() {
