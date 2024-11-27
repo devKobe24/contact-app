@@ -24,12 +24,7 @@ public class PersonController {
     }
 
     @GetMapping("/search")
-    public List<PersonResponse> getPeopleByFullName(String name) {
-        return personService.getPeopleByFullName(name);
-    }
-
-    @GetMapping("/search/firstname")
-    public List<PersonResponse> getPeopleByFirstName(String name) {
-        return personService.getPeopleByFirstName(name);
+    public List<PersonResponse> getPeopleByName(String name) {
+        return personService.getPeopleByName(name);
     }
 }
