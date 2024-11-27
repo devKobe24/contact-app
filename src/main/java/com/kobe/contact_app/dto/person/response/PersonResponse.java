@@ -11,7 +11,7 @@ public class PersonResponse {
 
     public PersonResponse(Person person) {
         this.id = person.getId();
-        this.name = person.getName();
+        this.name = person.getFirstName() + " " + person.getLastName();
         this.phoneNumber = person.getPhoneNumber();
         this.email = person.getEmail();
     }
