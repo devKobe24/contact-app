@@ -1,6 +1,8 @@
 package com.kobe.contact_app.controller;
 
+import com.kobe.contact_app.domain.person.Person;
 import com.kobe.contact_app.dto.person.request.PersonCreateRequest;
+import com.kobe.contact_app.dto.person.request.PersonPhoneNumberUpdateRequest;
 import com.kobe.contact_app.dto.person.response.PersonResponse;
 import com.kobe.contact_app.service.person.PersonService;
 import org.springframework.web.bind.annotation.*;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/person")
 public class PersonController {
     private final PersonService personService;
 
@@ -21,7 +24,7 @@ public class PersonController {
     }
 
     @GetMapping("/search")
-    public List<PersonResponse> getPeopleByName(String name) {
+    public List<PersonResponse> getPeopleByName(@RequestParam("name") String name) {
         return personService.getPeopleByName(name);
     }
 
@@ -39,4 +42,10 @@ public class PersonController {
     public List<PersonResponse> getPeopleByAlphabet(@RequestParam("name") String name) {
         return personService.getPeopleByAlphabet(name);
     }
+
+    @PutMapping("/update/number")
+    public PersonResponse updatePhoneNumber(@RequestBody PersonPhoneNumberUpdateRequest request) {
+        return personService.updateByPhoneNumber(request.getId(), request.getPhoneNumber());
+    }
+
 }
