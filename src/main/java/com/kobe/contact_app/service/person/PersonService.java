@@ -30,4 +30,11 @@ public class PersonService {
                 .map(PersonResponse::new)
                 .collect(Collectors.toList());
     }
+
+    @Transactional(readOnly = true)
+    public List<PersonResponse> getPeopleByPhoneNumber(String phoneNumber) {
+        return personRepository.findByPhoneNumber(phoneNumber).stream()
+                .map(PersonResponse::new)
+                .collect(Collectors.toList());
+    }
 }
