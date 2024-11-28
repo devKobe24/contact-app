@@ -22,4 +22,10 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     // 알파벳으로 사람 찾기
     @Query("SELECT p FROM Person p WHERE p.firstName LIKE %:name% OR p.lastName LIKE %:name%")
     List<Person> findByNameAsAlphabet(@Param("name") String name);
+
+    // 번호 변경.
+    @Modifying
+    @Transactional
+    @Query("UPDATE Person p SET p.phoneNumber = :phoneNumber WHERE p.id = :id")
+    int updateByPhoneNumber(@Param("id") Long id, @Param("phoneNumber") String phoneNumber);
 }
