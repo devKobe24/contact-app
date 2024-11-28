@@ -21,20 +21,11 @@ public class PersonService {
 
     @Transactional
     public void savePerson(PersonCreateRequest request) {
-        String name = request.getLastName() + request.getFirstName();
-        Person person = personRepository.save(new Person(name, request.getPhoneNumber(), request.getEmail()));
-    }
-
-    // 동명이인이 있을 수 있으므로 List 형태로.
-    @Transactional(readOnly = true)
-    public List<PersonResponse> getPeopleByFullName(String name) {
-        return personRepository.findByName(name).stream()
-                .map(PersonResponse::new)
-                .collect(Collectors.toList());
+        Person person = personRepository.save(new Person(request.getFirstName(), request.getLastName(), request.getPhoneNumber(), request.getEmail()));
     }
 
     @Transactional(readOnly = true)
-    public List<PersonResponse> getPeopleByFirstName(String name) {
+    public List<PersonResponse> getPeopleByName(String name) {
         return personRepository.findByPartialName(name).stream()
                 .map(PersonResponse::new)
                 .collect(Collectors.toList());
