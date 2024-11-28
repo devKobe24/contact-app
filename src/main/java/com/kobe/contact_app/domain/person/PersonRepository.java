@@ -7,6 +7,11 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface PersonRepository extends JpaRepository<Person, Long> {
+    // 이름으로 사람 찾기
     @Query("SELECT p FROM Person p WHERE p.firstName LIKE %:name% OR p.lastName LIKE %:name%")
     List<Person> findByPartialName(@Param("name") String name);
+
+    // 번호로 사람 찾기
+    @Query("SELECT p FROM Person p WHERE p.phoneNumber LIKE %:phone_number%")
+    List<Person> findByPhoneNumber(@Param("phone_number") String phoneNumber);
 }
