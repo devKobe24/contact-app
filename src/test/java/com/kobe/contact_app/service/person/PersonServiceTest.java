@@ -60,4 +60,25 @@ class PersonServiceTest {
         Assertions.assertThat(responses.get(0).getName()).isEqualTo("민성 강");
         Assertions.assertThat(responses.get(1).getName()).isEqualTo("치즈 강");
     }
+
+    @Test
+    void getPeopleByPhoneNumber() {
+        // Given
+        Person person1 = new Person("민성", "강", "01012345678", "test1@example.com");
+        Person person2 = new Person("치즈", "강", "01056789012", "test2@example.com");
+
+        when(personRepository.findByPhoneNumber("01012345678")).thenReturn(List.of(person1));
+        when(personRepository.findByPhoneNumber("010")).thenReturn(List.of(person1, person2));
+
+        // When
+        List<PersonResponse> responses0 = personService.getPeopleByPhoneNumber("01012345678");
+        List<PersonResponse> responses1 = personService.getPeopleByPhoneNumber("010");
+
+        // Then
+        Assertions.assertThat(responses0).hasSize(1);
+        Assertions.assertThat(responses0.get(0).getName()).isEqualTo("민성 강");
+        Assertions.assertThat(responses1).hasSize(2);
+        Assertions.assertThat(responses1.get(0).getName()).isEqualTo("민성 강");
+        Assertions.assertThat(responses1.get(1).getName()).isEqualTo("치즈 강");
+    }
 }
