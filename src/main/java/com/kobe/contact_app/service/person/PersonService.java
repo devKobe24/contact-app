@@ -37,4 +37,18 @@ public class PersonService {
                 .map(PersonResponse::new)
                 .collect(Collectors.toList());
     }
+
+    @Transactional(readOnly = true)
+    public List<PersonResponse> getPeopleByEmail(String email) {
+        return personRepository.findByEmail(email).stream()
+                .map(PersonResponse::new)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public List<PersonResponse> getPeopleByAlphabet(String name) {
+        return personRepository.findByNameAsAlphabet(name).stream()
+                .map(PersonResponse::new)
+                .collect(Collectors.toList());
+    }
 }
