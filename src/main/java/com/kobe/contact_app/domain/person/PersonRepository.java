@@ -14,4 +14,12 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     // 번호로 사람 찾기
     @Query("SELECT p FROM Person p WHERE p.phoneNumber LIKE %:phone_number%")
     List<Person> findByPhoneNumber(@Param("phone_number") String phoneNumber);
+
+    // 이메일로 사람 찾기
+    @Query("SELECT p FROM Person p WHERE p.email LIKE %:email%")
+    List<Person> findByEmail(@Param("email") String email);
+
+    // 알파벳으로 사람 찾기
+    @Query("SELECT p FROM Person p WHERE p.firstName LIKE %:name% OR p.lastName LIKE %:name%")
+    List<Person> findByNameAsAlphabet(@Param("name") String name);
 }
