@@ -29,4 +29,14 @@ public class PersonController {
     public List<PersonResponse> getPeopleByPhoneNumber(@RequestParam("number") String phoneNumber) {
         return personService.getPeopleByPhoneNumber(phoneNumber);
     }
+
+    @GetMapping("/search/email")
+    public List<PersonResponse> getPeopleByEmail(@RequestParam("email") String email) {
+        return personService.getPeopleByEmail(email);
+    }
+
+    @GetMapping("/search/english")
+    public List<PersonResponse> getPeopleByAlphabet(@RequestParam("name") String name) {
+        return personService.getPeopleByAlphabet(name);
+    }
 }
