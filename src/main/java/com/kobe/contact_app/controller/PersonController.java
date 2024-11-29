@@ -2,6 +2,7 @@ package com.kobe.contact_app.controller;
 
 import com.kobe.contact_app.domain.person.Person;
 import com.kobe.contact_app.dto.person.request.*;
+import com.kobe.contact_app.dto.person.response.PersonDeleteEmailResponse;
 import com.kobe.contact_app.dto.person.response.PersonDeletePhoneNumberResponse;
 import com.kobe.contact_app.dto.person.response.PersonResponse;
 import com.kobe.contact_app.service.person.PersonService;
@@ -68,4 +69,8 @@ public class PersonController {
         return personService.deletePhoneNumber(request.getId(), request.getFirstName(), request.getLastName());
     }
 
+    @PutMapping("/delete/email")
+    public PersonDeleteEmailResponse deleteEmail(@RequestBody PersonEmailDeleteRequest request) {
+        return personService.deleteEmail(request.getId());
+    }
 }
