@@ -30,4 +30,10 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     @Transactional
     @Query("UPDATE Person p SET p.phoneNumber = :phoneNumber WHERE p.id = :id")
     int updateByPhoneNumber(@Param("id") Long id, @Param("phoneNumber") String phoneNumber);
+
+    // 이메일 변경.
+    @Modifying
+    @Transactional
+    @Query("UPDATE Person p SET p.email = :email WHERE p.id = :id")
+    int updateByEmail(@Param("id") Long id, @Param("email") String email);
 }
