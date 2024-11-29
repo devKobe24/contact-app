@@ -3,6 +3,7 @@ package com.kobe.contact_app.service.person;
 import com.kobe.contact_app.domain.person.Person;
 import com.kobe.contact_app.domain.person.PersonRepository;
 import com.kobe.contact_app.dto.person.request.PersonCreateRequest;
+import com.kobe.contact_app.dto.person.response.PersonDeletePhoneNumberResponse;
 import com.kobe.contact_app.dto.person.response.PersonResponse;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
