@@ -2,6 +2,7 @@ package com.kobe.contact_app.controller;
 
 import com.kobe.contact_app.domain.person.Person;
 import com.kobe.contact_app.dto.person.request.*;
+import com.kobe.contact_app.dto.person.response.PersonDeletePhoneNumberResponse;
 import com.kobe.contact_app.dto.person.response.PersonResponse;
 import com.kobe.contact_app.service.person.PersonService;
 import org.springframework.web.bind.annotation.*;
@@ -60,6 +61,11 @@ public class PersonController {
     @PutMapping("/update/lastname")
     public PersonResponse updateLastName(@RequestBody PersonLastNameUpdateRequest request) {
         return personService.updateByLastName(request.getId(), request.getLastName());
+    }
+
+    @PutMapping("/delete/number")
+    public PersonDeletePhoneNumberResponse deletePhoneNumber(@RequestBody PersonPhoneNumberDeleteRequest request) {
+        return personService.deletePhoneNumber(request.getId(), request.getFirstName(), request.getLastName());
     }
 
 }
