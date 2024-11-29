@@ -66,7 +66,7 @@ public class PersonController {
 
     @PutMapping("/delete/number")
     public PersonDeletePhoneNumberResponse deletePhoneNumber(@RequestBody PersonPhoneNumberDeleteRequest request) {
-        return personService.deletePhoneNumber(request.getId(), request.getFirstName(), request.getLastName());
+        return personService.deletePhoneNumber(request.getId());
     }
 
     @PutMapping("/delete/email")
