@@ -3,6 +3,7 @@ package com.kobe.contact_app.service.person;
 import com.kobe.contact_app.domain.person.Person;
 import com.kobe.contact_app.domain.person.PersonRepository;
 import com.kobe.contact_app.dto.person.request.PersonCreateRequest;
+import com.kobe.contact_app.dto.person.response.PersonDeleteEmailResponse;
 import com.kobe.contact_app.dto.person.response.PersonDeletePhoneNumberResponse;
 import com.kobe.contact_app.dto.person.response.PersonResponse;
 import org.springframework.stereotype.Service;
@@ -139,6 +140,22 @@ public class PersonService {
         // 업데이트 된 데이터를 다시 조회.
         return personRepository.findById(id)
                 .map(PersonDeletePhoneNumberResponse::new)
+                .orElseThrow(() -> new IllegalArgumentException("No person found with ID: " + id));
+    }
+
+    @Transactional
+    public PersonDeleteEmailResponse deleteEmail(Long id) {
+        Person person = personRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("No person found with ID: " + id));
+
+        int updatedCount = personRepository.deleteByEmail(id);
+
+        if (updatedCount == 0) {
+            throw new IllegalArgumentException("Failed to delete email for ID: " + id);
+        }
+
+        return personRepository.findById(id)
+                .map(PersonDeleteEmailResponse::new)
                 .orElseThrow(() -> new IllegalArgumentException("No person found with ID: " + id));
     }
 }
