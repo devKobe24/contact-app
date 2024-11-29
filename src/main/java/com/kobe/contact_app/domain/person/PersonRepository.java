@@ -56,4 +56,11 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     @Query("UPDATE Person p SET p.phoneNumber = NULL WHERE p.id = :id")
     int deleteByPhoneNumber(@Param("id") Long id);
 
+    // 이메일 삭제.
+    // 특정 id를 가진 Person의 email 값을 NULL로 설정하는 쿼리
+    @Modifying
+    @Transactional
+    @Query("UPDATE Person p SET p.email = NULL WHERE p.id = :id")
+    int deleteByEmail(@Param("id") Long id);
+
 }
