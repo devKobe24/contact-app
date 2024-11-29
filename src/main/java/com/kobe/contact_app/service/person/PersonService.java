@@ -89,7 +89,7 @@ public class PersonService {
         // Update 쿼리 실행.
         int updateCount = personRepository.updateByFirstName(id, firstName);
 
-        // 업데이트가 실해한 경우 예외 처리.
+        // 업데이트가 실패한 경우 예외 처리.
         if (updateCount == 0) {
             throw new IllegalArgumentException("No person found with ID: " + id);
         }
