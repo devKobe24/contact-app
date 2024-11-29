@@ -1,10 +1,7 @@
 package com.kobe.contact_app.controller;
 
 import com.kobe.contact_app.domain.person.Person;
-import com.kobe.contact_app.dto.person.request.PersonCreateRequest;
-import com.kobe.contact_app.dto.person.request.PersonEmailUpdateRequest;
-import com.kobe.contact_app.dto.person.request.PersonFirstNameUpdateRequest;
-import com.kobe.contact_app.dto.person.request.PersonPhoneNumberUpdateRequest;
+import com.kobe.contact_app.dto.person.request.*;
 import com.kobe.contact_app.dto.person.response.PersonResponse;
 import com.kobe.contact_app.service.person.PersonService;
 import org.springframework.web.bind.annotation.*;
@@ -58,6 +55,11 @@ public class PersonController {
     @PutMapping("/update/firstname")
     public PersonResponse updateFirstName(@RequestBody PersonFirstNameUpdateRequest request) {
         return personService.updateByFirstName(request.getId(), request.getFirstName());
+    }
+
+    @PutMapping("/update/lastname")
+    public PersonResponse updateLastName(@RequestBody PersonLastNameUpdateRequest request) {
+        return personService.updateByLastName(request.getId(), request.getLastName());
     }
 
 }
