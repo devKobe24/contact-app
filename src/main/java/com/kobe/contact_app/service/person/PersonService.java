@@ -119,15 +119,10 @@ public class PersonService {
     }
 
     @Transactional
-    public PersonDeletePhoneNumberResponse deletePhoneNumber(Long id, String firstName, String lastName) {
+    public PersonDeletePhoneNumberResponse deletePhoneNumber(Long id) {
         // ID로 Person 조회
         Person person = personRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("No person found with ID: " + id));
-
-        // firstName, lastName 일치 여부 확인
-        if (!person.getFirstName().equals(firstName) || !person.getLastName().equals(lastName)) {
-            throw new IllegalArgumentException("First name or last name does not match for ID : " + id);
-        }
 
         // phoneNumber 삭제(NULL로 설정)
         int updatedCount = personRepository.deleteByPhoneNumber(id);
