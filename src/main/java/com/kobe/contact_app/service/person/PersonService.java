@@ -99,4 +99,20 @@ public class PersonService {
                 .map(PersonResponse::new)
                 .orElseThrow(() -> new IllegalArgumentException("No person found with ID: " + id));
     }
+
+    @Transactional
+    public PersonResponse updateByLastName(Long id, String lastName) {
+        // Update 쿼리 실행.
+        int updateCount = personRepository.updateByLastName(id, lastName);
+
+        // 업데이트가 실행한 경우 예외 처리.
+        if (updateCount == 0) {
+            throw new IllegalArgumentException("No person found with ID: " + id);
+        }
+
+        // 업데이트된 데이터를 다시 조회.
+        return personRepository.findById(id)
+                .map(PersonResponse::new)
+                .orElseThrow(() -> new IllegalArgumentException("No person found with ID: " + id));
+    }
 }
