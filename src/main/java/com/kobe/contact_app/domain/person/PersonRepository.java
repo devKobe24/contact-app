@@ -14,8 +14,8 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     List<Person> findByPartialName(@Param("name") String name);
 
     // 번호로 사람 찾기
-    @Query("SELECT p FROM Person p WHERE p.phoneNumber LIKE %:phone_number%")
-    List<Person> findByPhoneNumber(@Param("phone_number") String phoneNumber);
+    @Query("SELECT p FROM Person p WHERE p.phoneNumber LIKE %:phoneNumber%")
+    List<Person> findByPhoneNumber(@Param("phoneNumber") String phoneNumber);
 
     // 이메일로 사람 찾기
     @Query("SELECT p FROM Person p WHERE p.email LIKE %:email%")
