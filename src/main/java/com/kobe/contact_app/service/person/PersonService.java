@@ -115,4 +115,29 @@ public class PersonService {
                 .map(PersonResponse::new)
                 .orElseThrow(() -> new IllegalArgumentException("No person found with ID: " + id));
     }
+
+    @Transactional
+    public PersonDeletePhoneNumberResponse deletePhoneNumber(Long id, String firstName, String lastName) {
+        // ID로 Person 조회
+        Person person = personRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("No person found with ID: " + id));
+
+        // firstName, lastName 일치 여부 확인
+        if (!person.getFirstName().equals(firstName) || !person.getLastName().equals(lastName)) {
+            throw new IllegalArgumentException("First name or last name does not match for ID : " + id);
+        }
+
+        // phoneNumber 삭제(NULL로 설정)
+        int updatedCount = personRepository.deleteByPhoneNumber(id);
+
+        // 업데이트가 실패한 경우 예외 처리.
+        if (updatedCount == 0) {
+            throw new IllegalArgumentException("Failed to delete phone number for ID: " + id);
+        }
+
+        // 업데이트 된 데이터를 다시 조회.
+        return personRepository.findById(id)
+                .map(PersonDeletePhoneNumberResponse::new)
+                .orElseThrow(() -> new IllegalArgumentException("No person found with ID: " + id));
+    }
 }
