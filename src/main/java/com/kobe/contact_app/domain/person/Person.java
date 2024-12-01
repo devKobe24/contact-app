@@ -24,16 +24,6 @@ public class Person {
     protected Person() {}
 
     public Person(String firstName, String lastName, String phoneNumber, String email) {
-        if (firstName == null || firstName.isBlank()) {
-            throw new IllegalArgumentException(String.format("First name cannot be null or empty"));
-        }
-        if (lastName == null || lastName.isBlank()) {
-            throw new IllegalArgumentException(String.format("Last name cannot be null or empty"));
-        }
-        if (phoneNumber == null || phoneNumber.isBlank()) {
-            throw new IllegalArgumentException(String.format("Phone number cannot be null or empty"));
-        }
-
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
