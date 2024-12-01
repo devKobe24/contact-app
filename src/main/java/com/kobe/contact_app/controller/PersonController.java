@@ -1,6 +1,5 @@
 package com.kobe.contact_app.controller;
 
-import com.kobe.contact_app.domain.person.Person;
 import com.kobe.contact_app.dto.person.request.*;
 import com.kobe.contact_app.dto.person.response.PersonDeleteEmailResponse;
 import com.kobe.contact_app.dto.person.response.PersonDeletePhoneNumberResponse;
