@@ -77,4 +77,9 @@ public class PersonController {
     public PersonDeleteEmailResponse deleteEmail(@RequestBody PersonEmailDeleteRequest request) {
         return personService.deleteEmail(request.getId());
     }
+
+    @PutMapping("/delete/firstname")
+    public FirstNameDeleteResponse deleteFirstName(@RequestBody FirstNameDeleteRequest request) {
+        return personService.deleteFirstName(request.getId());
+    }
 }
