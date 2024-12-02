@@ -19,8 +19,8 @@ public class PersonController {
     }
 
     @PostMapping("/save")
-    public void savePerson(@RequestBody PersonCreateRequest request) {
-        personService.savePerson(request);
+    public PersonResponse savePerson(@RequestBody PersonCreateRequest request) {
+        return personService.savePerson(request);
     }
 
     @GetMapping("/search")
