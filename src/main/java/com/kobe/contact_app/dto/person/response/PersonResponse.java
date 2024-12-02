@@ -5,13 +5,16 @@ import com.kobe.contact_app.domain.person.Person;
 public class PersonResponse {
 
     private Long id;
-    private String name;
+    private String firstName;
+    private String lastName;
     private String phoneNumber;
     private String email;
 
+
     public PersonResponse(Person person) {
         this.id = person.getId();
-        this.name = person.getFirstName() + " " + person.getLastName();
+        this.firstName = person.getFirstName();
+        this.lastName = person.getLastName();
         this.phoneNumber = person.getPhoneNumber();
         this.email = person.getEmail();
     }
@@ -20,8 +23,12 @@ public class PersonResponse {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 
     public String getPhoneNumber() {
