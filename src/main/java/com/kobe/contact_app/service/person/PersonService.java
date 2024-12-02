@@ -22,6 +22,13 @@ public class PersonService {
     }
 
     @Transactional
+    public List<PersonResponse> getAllContactList() {
+        return personRepository.findAllByOrderByIdAsc().stream()
+                .map(PersonResponse::new)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
     public PersonResponse savePerson(PersonCreateRequest request) {
         Person person = personRepository.save(new Person(
                 request.getFirstName(),
