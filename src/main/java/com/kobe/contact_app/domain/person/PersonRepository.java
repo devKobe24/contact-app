@@ -1,5 +1,6 @@
 package com.kobe.contact_app.domain.person;
 
+import com.kobe.contact_app.dto.person.response.PersonResponse;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -9,6 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface PersonRepository extends JpaRepository<Person, Long> {
+    // 전체 연락처 보기.
+    List<Person> findAllByOrderByIdAsc();
+
     // 이름으로 사람 찾기
     @Query("SELECT p FROM Person p WHERE p.firstName LIKE %:name% OR p.lastName LIKE %:name%")
     List<Person> findByPartialName(@Param("name") String name);
