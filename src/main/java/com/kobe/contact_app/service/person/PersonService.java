@@ -2,10 +2,14 @@ package com.kobe.contact_app.service.person;
 
 import com.kobe.contact_app.domain.person.Person;
 import com.kobe.contact_app.domain.person.PersonRepository;
+import com.kobe.contact_app.dto.name.response.FirstNameDeleteResponse;
 import com.kobe.contact_app.dto.person.request.PersonCreateRequest;
 import com.kobe.contact_app.dto.person.response.PersonDeleteEmailResponse;
 import com.kobe.contact_app.dto.person.response.PersonDeletePhoneNumberResponse;
 import com.kobe.contact_app.dto.person.response.PersonResponse;
+import com.kobe.contact_app.helper.PersonHelper;
+import com.kobe.contact_app.helper.ResponseHelper;
+import com.kobe.contact_app.helper.ValidationHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -165,5 +169,16 @@ public class PersonService {
         return personRepository.findById(id)
                 .map(PersonDeleteEmailResponse::new)
                 .orElseThrow(() -> new IllegalArgumentException("No person found with ID: " + id));
+    }
+
+    @Transactional
+    public FirstNameDeleteResponse deleteFirstName(Long id) {
+        Person person = PersonHelper.findPersonById(id, personRepository);
+
+        int updatedCount = personRepository.deleteByFirstName(id);
+
+        ValidationHelper.validateUpdateCount(updatedCount, id);
+
+        return ResponseHelper.createResponse(id, FirstNameDeleteResponse::new, personRepository);
     }
 }
