@@ -22,8 +22,14 @@ public class PersonService {
     }
 
     @Transactional
-    public void savePerson(PersonCreateRequest request) {
-        Person person = personRepository.save(new Person(request.getFirstName(), request.getLastName(), request.getPhoneNumber(), request.getEmail()));
+    public PersonResponse savePerson(PersonCreateRequest request) {
+        Person person = personRepository.save(new Person(
+                request.getFirstName(),
+                request.getLastName(),
+                request.getPhoneNumber(),
+                request.getEmail()
+        ));
+        return new PersonResponse(person);
     }
 
     @Transactional(readOnly = true)
