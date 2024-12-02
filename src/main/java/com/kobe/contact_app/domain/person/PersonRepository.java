@@ -1,6 +1,5 @@
 package com.kobe.contact_app.domain.person;
 
-import com.kobe.contact_app.dto.person.response.PersonResponse;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -66,4 +65,10 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     @Transactional
     @Query("UPDATE Person p SET p.email = NULL WHERE p.id = :id")
     int deleteByEmail(@Param("id") Long id);
+
+    // 이름(firstName)삭제.
+    @Modifying
+    @Transactional
+    @Query("UPDATE Person p SET p.firstName = NULL WHERE p.id = :id")
+    int deleteByFirstName(@Param("id") Long id);
 }
