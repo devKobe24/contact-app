@@ -23,6 +23,11 @@ public class PersonController {
         return personService.savePerson(request);
     }
 
+    @GetMapping("/searchAll")
+    public List<PersonResponse> getAllContactList() {
+        return personService.getAllContactList();
+    }
+
     @GetMapping("/search")
     public List<PersonResponse> getPeopleByName(@RequestParam("name") String name) {
         return personService.getPeopleByName(name);
