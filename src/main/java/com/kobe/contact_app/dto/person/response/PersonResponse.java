@@ -11,30 +11,9 @@ public class PersonResponse {
 
     public PersonResponse(Person person) {
         this.id = person.getId();
-
-        if (person.getFirstName() != null && person.getLastName() != null) {
-            this.name = person.getFirstName() + " " + person.getLastName();
-        } else if (person.getFirstName() != null && person.getLastName() == null) {
-            this.name = person.getFirstName();
-        } else if (person.getFirstName() == null && person.getLastName() != null) {
-            this.name = null + " " + person.getLastName();
-        } else {
-            this.name = null;
-        }
-
-        if (person.getPhoneNumber() != null) {
-            this.phoneNumber = person.getPhoneNumber();
-        } else {
-            this.phoneNumber = null;
-        }
-
-        if (person.getEmail() != null) {
-            this.email = person.getEmail();
-        } else {
-            this.email = null;
-        }
-
-
+        this.name = person.getFirstName() + " " + person.getLastName();
+        this.phoneNumber = person.getPhoneNumber();
+        this.email = person.getEmail();
     }
 
     public Long getId() {
