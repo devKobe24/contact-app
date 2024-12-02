@@ -12,10 +12,13 @@ public class PersonCreateRequest {
     private String email;
 
     public PersonCreateRequest(String firstName, String lastName, String phoneNumber, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
+
+        determineFirstNameAndLastNameState(firstName, lastName, phoneNumber, email, (resultFirstName, resultLastName, resultPhoneNumber, resultEmail) -> {
+            this.firstName = resultFirstName;
+            this.lastName = resultLastName;
+            this.phoneNumber = resultPhoneNumber;
+            this.email = resultEmail;
+        });
     }
 
     public String getFirstName() {
