@@ -86,4 +86,9 @@ public class PersonController {
     public FirstNameDeleteResponse deleteFirstName(@RequestBody FirstNameDeleteRequest request) {
         return personService.deleteFirstName(request.getId());
     }
+
+    @PutMapping("/delete/lastname")
+    public LastNameDeleteResponse deleteLastName(@RequestBody LastNameDeleteRequest request) {
+        return personService.deleteLastName(request.getId());
+    }
 }
