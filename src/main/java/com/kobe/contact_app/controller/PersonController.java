@@ -25,6 +25,7 @@ public class PersonController {
     }
 
     @PostMapping("/save")
+    @Operation(summary = "Save Contact", description = "이름, 성, 전화번호, 이메일을 입력하여 연락처를 저장합니다.")
     public PersonResponse savePerson(@RequestBody PersonCreateRequest request) {
         return personService.savePerson(request);
     }
