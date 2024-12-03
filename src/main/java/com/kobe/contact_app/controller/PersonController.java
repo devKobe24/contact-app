@@ -1,5 +1,6 @@
 package com.kobe.contact_app.controller;
 
+import com.kobe.contact_app.dto.info.request.DeleteInfoRequest;
 import com.kobe.contact_app.dto.name.request.FirstNameDeleteRequest;
 import com.kobe.contact_app.dto.name.request.LastNameDeleteRequest;
 import com.kobe.contact_app.dto.name.response.FirstNameDeleteResponse;
@@ -95,5 +96,10 @@ public class PersonController {
     @DeleteMapping("/deleteAll/data")
     public void deleteAllData() {
         personService.deleteAllData();
+    }
+
+    @DeleteMapping("/deleteAll/info")
+    public void deleteAllInfoById(@RequestBody DeleteInfoRequest request) {
+        personService.deleteAllInfoById(request.getId());
     }
 }
