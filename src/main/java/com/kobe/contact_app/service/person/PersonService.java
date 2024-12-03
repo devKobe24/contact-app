@@ -193,4 +193,9 @@ public class PersonService {
 
         return ResponseHelper.createResponse(id, LastNameDeleteResponse::new, personRepository);
     }
+
+    @Transactional
+    public void deleteAllData() {
+        personRepository.deleteAllData();
+    }
 }
