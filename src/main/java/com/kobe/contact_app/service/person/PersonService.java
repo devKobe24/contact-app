@@ -181,4 +181,15 @@ public class PersonService {
 
         return ResponseHelper.createResponse(id, FirstNameDeleteResponse::new, personRepository);
     }
+
+    @Transactional
+    public LastNameDeleteResponse deleteLastName(Long id) {
+        Person person = PersonHelper.findPersonById(id, personRepository);
+
+        int updatedCount = personRepository.deleteByLastName(id);
+
+        ValidationHelper.validateUpdateCount(updatedCount, id);
+
+        return ResponseHelper.createResponse(id, LastNameDeleteResponse::new, personRepository);
+    }
 }
