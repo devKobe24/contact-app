@@ -71,4 +71,10 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     @Transactional
     @Query("UPDATE Person p SET p.firstName = NULL WHERE p.id = :id")
     int deleteByFirstName(@Param("id") Long id);
+
+    // 성(lastName) 삭제.
+    @Modifying
+    @Transactional
+    @Query("UPDATE Person p SET p.lastName = NULL WHERE p.id = :id")
+    int deleteByLastName(@Param("id") Long id);
 }
