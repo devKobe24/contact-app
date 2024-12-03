@@ -3,6 +3,7 @@ package com.kobe.contact_app.service.person;
 import com.kobe.contact_app.domain.person.Person;
 import com.kobe.contact_app.domain.person.PersonRepository;
 import com.kobe.contact_app.dto.name.response.FirstNameDeleteResponse;
+import com.kobe.contact_app.dto.name.response.LastNameDeleteResponse;
 import com.kobe.contact_app.dto.person.request.PersonCreateRequest;
 import com.kobe.contact_app.dto.person.response.PersonDeleteEmailResponse;
 import com.kobe.contact_app.dto.person.response.PersonDeletePhoneNumberResponse;
