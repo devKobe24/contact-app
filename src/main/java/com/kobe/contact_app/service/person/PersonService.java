@@ -198,4 +198,9 @@ public class PersonService {
     public void deleteAllData() {
         personRepository.deleteAllData();
     }
+
+    @Transactional
+    public void deleteAllInfoById(Long id) {
+        personRepository.deleteAllInfoById(id);
+    }
 }
