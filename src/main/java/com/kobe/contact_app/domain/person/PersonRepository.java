@@ -77,16 +77,4 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     @Transactional
     @Query("UPDATE Person p SET p.lastName = NULL WHERE p.id = :id")
     int deleteByLastName(@Param("id") Long id);
-
-    // 전체 데이터 삭제.
-    @Modifying
-    @Transactional
-    @Query(value = "TRUNCATE TABLE person", nativeQuery = true)
-    void deleteAllData();
-
-    // 특정 연락처 정보 전체 삭제.
-    @Modifying
-    @Transactional
-    @Query("DELETE FROM Person p WHERE p.id = :id")
-    void deleteAllInfoById(@Param("id") Long id);
 }
