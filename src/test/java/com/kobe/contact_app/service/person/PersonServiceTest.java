@@ -2,16 +2,12 @@ package com.kobe.contact_app.service.person;
 
 import com.kobe.contact_app.domain.person.Person;
 import com.kobe.contact_app.domain.person.PersonRepository;
-import com.kobe.contact_app.dto.person.request.PersonCreateRequest;
-import com.kobe.contact_app.dto.person.response.PersonResponse;
-import org.assertj.core.api.Assertions;
+import com.kobe.contact_app.dto.person.request.create.PersonCreateRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
-import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
