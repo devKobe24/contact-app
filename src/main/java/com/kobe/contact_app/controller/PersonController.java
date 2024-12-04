@@ -94,14 +94,4 @@ public class PersonController {
     public LastNameDeleteResponse deleteLastName(@RequestBody LastNameDeleteRequest request) {
         return personService.deleteLastName(request.getId());
     }
-
-    @DeleteMapping("/deleteAll/data")
-    public void deleteAllData() {
-        personService.deleteAllData();
-    }
-
-    @DeleteMapping("/deleteAll/info")
-    public void deleteAllInfoById(@RequestBody DeleteInfoRequest request) {
-        personService.deleteAllInfoById(request.getId());
-    }
 }
