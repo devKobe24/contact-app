@@ -1,4 +1,4 @@
-package com.kobe.contact_app.dto.person.request;
+package com.kobe.contact_app.dto.person.request.create;
 
 import com.kobe.contact_app.util.name.NameStateProcessor;
 import io.swagger.v3.oas.annotations.media.Schema;
