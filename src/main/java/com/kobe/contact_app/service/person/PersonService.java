@@ -4,7 +4,8 @@ import com.kobe.contact_app.domain.person.Person;
 import com.kobe.contact_app.domain.person.PersonRepository;
 import com.kobe.contact_app.dto.name.response.FirstNameDeleteResponse;
 import com.kobe.contact_app.dto.name.response.LastNameDeleteResponse;
-import com.kobe.contact_app.dto.person.request.PersonCreateRequest;
+import com.kobe.contact_app.dto.person.request.create.PersonCreateRequest;
+import com.kobe.contact_app.dto.person.request.delete.PersonPhoneNumberDeleteRequest;
 import com.kobe.contact_app.dto.person.response.PersonDeleteEmailResponse;
 import com.kobe.contact_app.dto.person.response.PersonDeletePhoneNumberResponse;
 import com.kobe.contact_app.dto.person.response.PersonResponse;
@@ -137,23 +138,23 @@ public class PersonService {
     }
 
     @Transactional
-    public PersonDeletePhoneNumberResponse deletePhoneNumber(Long id) {
+    public PersonDeletePhoneNumberResponse deletePhoneNumber(PersonPhoneNumberDeleteRequest request) {
         // ID로 Person 조회
-        Person person = personRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("No person found with ID: " + id));
+        Person person = personRepository.findById(request.getId())
+                .orElseThrow(() -> new IllegalArgumentException("No person found with ID: " + request.getId()));
 
         // phoneNumber 삭제(NULL로 설정)
-        int updatedCount = personRepository.deleteByPhoneNumber(id);
+        int updatedCount = personRepository.deleteByPhoneNumber(request.getId());
 
         // 업데이트가 실패한 경우 예외 처리.
         if (updatedCount == 0) {
-            throw new IllegalArgumentException("Failed to delete phone number for ID: " + id);
+            throw new IllegalArgumentException("Failed to delete phone number for ID: " + request.getId());
         }
 
         // 업데이트 된 데이터를 다시 조회.
-        return personRepository.findById(id)
+        return personRepository.findById(request.getId())
                 .map(PersonDeletePhoneNumberResponse::new)
-                .orElseThrow(() -> new IllegalArgumentException("No person found with ID: " + id));
+                .orElseThrow(() -> new IllegalArgumentException("No person found with ID: " + request.getId()));
     }
 
     @Transactional
