@@ -1,4 +1,4 @@
-package com.kobe.contact_app.dto.person.request;
+package com.kobe.contact_app.dto.person.request.update;
 
 public class PersonPhoneNumberUpdateRequest {
     private Long id;
