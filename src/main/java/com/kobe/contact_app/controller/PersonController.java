@@ -1,11 +1,16 @@
 package com.kobe.contact_app.controller;
 
-import com.kobe.contact_app.dto.info.request.DeleteInfoRequest;
 import com.kobe.contact_app.dto.name.request.FirstNameDeleteRequest;
 import com.kobe.contact_app.dto.name.request.LastNameDeleteRequest;
 import com.kobe.contact_app.dto.name.response.FirstNameDeleteResponse;
 import com.kobe.contact_app.dto.name.response.LastNameDeleteResponse;
-import com.kobe.contact_app.dto.person.request.*;
+import com.kobe.contact_app.dto.person.request.create.PersonCreateRequest;
+import com.kobe.contact_app.dto.person.request.delete.PersonEmailDeleteRequest;
+import com.kobe.contact_app.dto.person.request.delete.PersonPhoneNumberDeleteRequest;
+import com.kobe.contact_app.dto.person.request.update.PersonEmailUpdateRequest;
+import com.kobe.contact_app.dto.person.request.update.PersonFirstNameUpdateRequest;
+import com.kobe.contact_app.dto.person.request.update.PersonLastNameUpdateRequest;
+import com.kobe.contact_app.dto.person.request.update.PersonPhoneNumberUpdateRequest;
 import com.kobe.contact_app.dto.person.response.PersonDeleteEmailResponse;
 import com.kobe.contact_app.dto.person.response.PersonDeletePhoneNumberResponse;
 import com.kobe.contact_app.dto.person.response.PersonResponse;
@@ -89,7 +94,7 @@ public class PersonController {
     @PutMapping("/delete/number")
     @Operation(summary = "Delete phone number", description = "전화번호를 삭제합니다.")
     public PersonDeletePhoneNumberResponse deletePhoneNumber(@RequestBody PersonPhoneNumberDeleteRequest request) {
-        return personService.deletePhoneNumber(request.getId());
+        return personService.deletePhoneNumber(request);
     }
 
     @PutMapping("/delete/email")
