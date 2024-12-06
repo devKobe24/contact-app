@@ -1,6 +1,6 @@
 package com.kobe.contact_app.domain.person;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 public class Person {
