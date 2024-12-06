@@ -8,7 +8,9 @@ import com.kobe.contact_app.exception.MissingFieldException;
 public class NameStateProcessor {
     private static String processNameState(NameState nameState, String firstName, String lastName, String phoneNumber, String email) {
         switch (nameState) {
-            case ONLY_FIRST_NAME, BOTH_NAMES:
+            case ONLY_FIRST_NAME:
+                return firstName;
+            case BOTH_NAMES:
                 return firstName;
             case ONLY_LAST_NAME:
                 return null; // Last name handled separately
